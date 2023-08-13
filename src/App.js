@@ -135,17 +135,19 @@ const [finalData,setFinalData] = useState([])
 
 const fetchData = async () => {
   try {
-    // You reached the limit of the free tier limit for today(1,000 requests in a rolling 24hr period).
-    // const response = await fetch('https://apimocha.com/quicksell/data');
-    const response = data
-    // const jsonData = await response.json();
-    // setData1(jsonData.tickets);
-    // setData2(jsonData.users);
-    setData1(response.tickets);
-    setData2(response.users);
+    const response = await fetch('https://apimocha.com/quicksell/data');
+    const jsonData = await response.json();
+    setData1(jsonData.tickets);
+    setData2(jsonData.users);
     
   } catch (error) {
-    console.error('Error fetching data:', error);
+    // You reached the limit of the free tier limit for today(1,000 requests in a rolling 24hr period).
+    console.log('Error in fetching data from API:',error);
+    
+    // using hard coded data since i am out of api request
+    const response = data
+    setData1(response.tickets);
+    setData2(response.users);
   }
 };
 

@@ -11,8 +11,7 @@ const CardView = (props) => {
         </div>
         <h6 className="card-title mb-2 fw-bold">{props.cardData.title}</h6>
         <span className="d-inline-block p-2 rounded shadow-sm bg-light">
-          {" "}
-          {props.cardData.tag}{" "}
+        {props.cardData.tag}
         </span>
       </div>
     </div>
