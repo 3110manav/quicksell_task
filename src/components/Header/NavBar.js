@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 function NavBar(props) {
+  console.log(props);
   const groups = ["status", "user", "priority"];
   const priority = ["priority", "title"];
   const [groupBy, setGroupBy] = useState("status");
@@ -18,8 +19,7 @@ function NavBar(props) {
                   className="btn dropdown-toggle position-relative col-xs-12 d-flex align-items-center h-100"
                   type="button"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  
+                  aria-expanded="false"  
                 >
                   <span className="material-symbols-outlined me-2">tune</span>
                   Display
@@ -33,8 +33,8 @@ function NavBar(props) {
                         className="form-select w-auto"
                         aria-label="Default select example"
                         onChange={(elem) => {
-                          setGroupBy(elem.target.value);
-                          localStorage.setItem("groupBy", elem.target.value);
+                          setGroupBy(elem.target.value);                       
+                          localStorage.setItem("groupBy", elem.target.value);  
                           props.onChange(
                             elem.target.value,
                             localStorage.getItem("sortBy") || sortBy

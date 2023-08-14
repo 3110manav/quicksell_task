@@ -127,10 +127,8 @@ function App() {
     ],
   };
   
-const [data1, setData1] = useState([]);
-const [data2, setData2] = useState([]);
-const [status, setStatus] = useState(new Set());
-const [user, setUser] = useState(new Set());
+const [data1, setData1] = useState([]);  //TICKETS
+const [data2, setData2] = useState([]);  //USERS
 const [finalData,setFinalData] = useState([])
 
 const fetchData = async () => {
@@ -143,6 +141,7 @@ const fetchData = async () => {
   } catch (error) {
     // You reached the limit of the free tier limit for today(1,000 requests in a rolling 24hr period).
     console.log('Error in fetching data from API:',error);
+    console.log('Due to this reason using hard coded data');
     
     // using hard coded data since i am out of api request
     const response = data
@@ -157,9 +156,10 @@ useEffect(()=>{
   }
 },[])
 
+//INITIALL WHEN THE DATA IS LOADED 
 useEffect(()=>{
-  const groupBy = localStorage.getItem('groupBy') || undefined
-  const sortBy = localStorage.getItem('sortBy') || undefined
+  const groupBy = localStorage.getItem('groupBy') || undefined      //UNDEFINED BECAUSE WE HAVE BY DEFAULT SET GROUPBY TO STATUS IN tickitmaper 
+  const sortBy = localStorage.getItem('sortBy') || undefined        //UNDEFINED BECAUSE WE HAVE BY DEFAULT SET SORTBY TO PRIORITY IN tickitmaper
   setFinalData(ticketMapper({ tickets: data1, users: data2,grouping:groupBy,priority:sortBy }))
 },[data1,data2])
 
