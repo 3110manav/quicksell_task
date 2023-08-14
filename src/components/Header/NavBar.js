@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 function NavBar(props) {
   const groups = ["status", "user", "priority"];
   const priority = ["priority", "title"];
-  const [groupBy, setGroupBy] = useState("status");
-  const [sortBy, setSortBy] = useState("priority");
-
+  console.log(props);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -32,11 +30,10 @@ function NavBar(props) {
                         className="form-select w-auto"
                         aria-label="Default select example"
                         onChange={(elem) => {
-                          setGroupBy(elem.target.value);                       
                           localStorage.setItem("groupBy", elem.target.value);  
-                          props.onChange(
+                          props.onHandelChange(
                             elem.target.value,
-                            localStorage.getItem("sortBy") || sortBy
+                            localStorage.getItem("sortBy") || priority[0]
                           );
                         }}
                         defaultValue={
@@ -59,10 +56,9 @@ function NavBar(props) {
                         className="form-select w-auto"
                         aria-label="Default select example"
                         onChange={(elem) => {
-                          setSortBy(elem.target.value);
                           localStorage.setItem("sortBy", elem.target.value);
-                          props.onChange(
-                            localStorage.getItem("groupBy") || groupBy,
+                          props.onHandelChange(
+                            localStorage.getItem("groupBy") || groups[0],
                             elem.target.value
                           );
                         }}
