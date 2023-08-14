@@ -4,7 +4,7 @@ import CardView from "../Card/CardView";
 
 function CatagoryTable(props) {
 
-  const data = props.catagoryData;
+  const data = props.catagoryData;         //DATA COMING FROM App.js 
 
   if(data.length == 0){
     return null
@@ -17,7 +17,7 @@ function CatagoryTable(props) {
         <h4>{columnData.title}</h4>
         {columnData?.tickets.map((ticket, index) => (
           <li key={index} className="list-unstyled">
-            <CardView cardData={ticket} />
+            <CardView cardData={ticket} />               
           </li>
         ))}
       </div>

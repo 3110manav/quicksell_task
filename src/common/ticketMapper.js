@@ -29,44 +29,45 @@ const ticketMapper = ({
 }) => {
   const allStatus = new Set(tickets.map((item) => item.status));
   const allUsers = new Set(tickets.map((item) => item.userId));
-  const allPriority = new Set(
-    tickets.map((item) => item.priority).sort((a, b) => b - a)
-  );
+  const allPriority = new Set(tickets.map((item) => item.priority).sort((a, b) => b - a));
+
   let data = [];
+
+  //WHEN GROUPING BY STATUS 
   if (grouping == "status") {
     allStatus.forEach((status) => {
       data.push({
-        title: status,
+        title: status,                 //WE SORT THE TABLES BY 'STATUS' - SO TITLE 
         tickets:
           priority == "priority"
             ? tickets
-                .filter((ticket) => ticket.status == status)
-                .sort((a, b) => b.priority - a.priority)
-            : titleSort(tickets.filter((ticket) => ticket.status == status)),
+                .filter((ticket) => ticket.status == status)      // WE PUSH ENTIRE TICKIT WHOSE STATUS MATCHES THE SELECTED STATUS BY THE USER 
+                .sort((a, b) => b.priority - a.priority)          // SORTING THEM BY PRIORITY BY DEFAULT 
+            : titleSort(tickets.filter((ticket) => ticket.status == status)),     // IF SORTING BY TITLE IS SELECTED THEN WE CALL 'TITLESORT' AND SORT ACC TO TITLE
       });
     });
   }
   if (grouping == "priority") {
     allPriority.forEach((priority) => {
       data.push({
-        title: priorityMapper[priority],
+        title: priorityMapper[priority],              //WE SORT THE TABLES BY 'PRIORITY' - SO TITLE 
         tickets:
           priority == "priority"
-            ? tickets.filter((ticket) => ticket.priority == priority)
+            ? tickets.filter((ticket) => ticket.priority == priority)            // WE PUSH ENTIRE TICKIT WHOSE PRIORITY MATCHES THE SELECTED PRIORITY BY THE USER
             : titleSort(
-                tickets.filter((ticket) => ticket.priority == priority)
+                tickets.filter((ticket) => ticket.priority == priority)          // IF SORTING BY TITLE IS SELECTED THEN WE CALL 'TITLESORT' AND SORT ACC TO TITLE 
               ),
       });
     });
   }
   if (grouping == "user") {
-    allUsers.forEach((all_user, key) => {
+    allUsers.forEach((all_user) => {
       data.push({
-        title: users.filter((user) => {
+        title: users.filter((user) => {                //WE SORT THE TABLES BY 'USERS' - SO TITLE 
           if (user.id == all_user) {
-            return user.name;
+            return user.name;                         //EXTRACTING THE NAME OF THE USER FROM THE USER ID
           }
-        })[0].name,
+        })[0].name,                                   //RETURNING AN ARRAY WHOSE FIRST INDEX HAS NAME OF THE USER
         tickets:
           priority == "priority"
             ? tickets
@@ -76,7 +77,7 @@ const ticketMapper = ({
     });
   }
   console.log(grouping,priority,data);
-  return data;
+  return data;                                       //RETURNING DATA ACC TO USERS SELECTION 
 };
 
 export default ticketMapper;

@@ -1,7 +1,7 @@
 import { React } from "react";
 import { priorityMapper } from "../../common/ticketMapper";
 
-const CardView = (props) => {
+const CardView = (props) => {         //DATA COMING FROM CATAGOTY TABLE
   return (
     <div className="card shadow-sm mt-2 mb-3">
       <div className="card-body">
