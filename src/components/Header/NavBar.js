@@ -33,7 +33,7 @@ function NavBar(props) {
                           localStorage.setItem("groupBy", elem.target.value);  
                           props.onHandelChange(
                             elem.target.value,
-                            localStorage.getItem("sortBy") || priority[0]
+                            localStorage.getItem("sortBy") || "status"
                           );
                         }}
                         defaultValue={
