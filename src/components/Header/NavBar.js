@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 
 function NavBar(props) {
-  console.log(props);
   const groups = ["status", "user", "priority"];
   const priority = ["priority", "title"];
   const [groupBy, setGroupBy] = useState("status");
