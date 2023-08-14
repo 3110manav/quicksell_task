@@ -1,4 +1,5 @@
 import "./App.css";
+import Loader from "./components/Loader/Loader";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import NavBar from "./components/Header/NavBar";
 import CatagoryTable from "./components/CatagoryTable/CatagoryTable";
@@ -181,7 +182,7 @@ function App() {
   };
 
   if (finalData.length == 0) {
-    return <></>;
+    return <><Loader/></>;
   }
   return (
     <div className="App">
